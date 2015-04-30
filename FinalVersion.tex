@@ -1,0 +1,758 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{FinalVersion}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Scalable K-Means++}\label{scalable-k-means}
+
+\subsubsection{Background}\label{background}
+
+Clustering is a central problem in data management and has a rich and
+illustrious history with literally hundreds of different algorithms
+published on the subject. Even so, a single method --- k-means ---
+remains the most popular clustering method; in fact, it was identified
+as one of the top 10 algorithms in data mining. The advantage of k-means
+is its simplicity: starting with a set of randomly chosen initial
+centers, one repeatedly assigns each input point to its nearest center,
+and then recomputes the centers given the point assignment. This local
+search, called Lloyd's iteration, continues until the solution does not
+change between two consecutive rounds.
+
+K-means++ clustering is identical to the K-means algorithm, except for
+the selection of initial conditions.
+
+In this paper the autors obtained a parallel version of the k-means++
+initialization algorithm and empirically demonstrated its practical
+effectiveness. The main idea was that instead of sampling a single point
+in each pass of the k-means++ algorithm, they sampled O(k) points in
+each round and repeat the process for approximately O(log n) rounds. At
+the end of the algorithm they were left with O(k log n) points that
+formed a solution that was within a constant factor away from the
+optimum. They then reclustered these O(k log n) points into k initial
+centers for the Lloyd's iteration. This initialization algorithm, which
+they called k-means\textbar{}\textbar{}, was quite simple and lended
+itself to easy parallel implementations. However, the analysis of the
+algorithm turned out to be highly non-trivial, requiring new insights,
+and was quite different from the analysis of k-means++. They then
+evaluated the performance of this algorithm on real-world datasets.
+Their key observations in the experiments were: - O(log n) iterations
+was not necessary and after as little as five rounds, the solution of
+k-means\textbar{}\textbar{} was consistently as good or better than that
+found by any other method. - The parallel implementation of
+k-means\textbar{}\textbar{} was much faster than existing parallel
+algorithms for k-means. - The number of iterations until Lloyd's
+algorithm converges was smallest when using k-means\textbar{}\textbar{}
+as the seed.
+
+\subsubsection{The algorithm}\label{the-algorithm}
+
+$k$-means\textbar{}\textbar{} ($k$, $\mathscr{l}$):
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  $\mathcal{C} \leftarrow$ sample a point uniformly at random from $X$,
+  where $X$ is the dataset.
+\item
+  $\psi \leftarrow \phi x (\mathcal{C})$:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    $\phi x (\mathcal{C})$ is the sum of all smallest euclidean
+    distances from all points from $X$ to all points from $\mathcal{C}$.
+    In other words, for each point in $X$ find the distance to the
+    closest point in $\mathcal{C}$, and in the end compute the sum of
+    all those minimal distances, one for each point in $X$.
+  \item
+    So rewrite $\psi$ as $\psi = \sum_{i = 1}^{n}d_{c}^{2}(X_{i})$,
+    where $d_{c}^{2}(X_{i})$ is the distance from $x_{i}$ to the closest
+    point in $\mathcal{C}$.
+  \end{itemize}
+\item
+  \textbf{for} $\mathcal{O}(\log \psi)$ times \textbf{do}:
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    $\mathcal{C}^{'} \leftarrow$ sample each point $x \in X$
+    independently with probability
+    $p_{x} = \frac{\mathscr{l} d^{2}(x, \mathcal{C})}{\phi x (\mathcal{C})}$.
+  \item
+    $\mathcal{C} \leftarrow \mathcal{C} \cup \mathcal{C}^{'}$
+  \end{itemize}
+\item
+  \textbf{end for}
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    In this for loop, $\phi x (\mathcal{C})$ is defined in previous
+    step, and the rule is that, iterate in $X$ to find all $x_{i}$, for
+    each $x_{i}$ compute $p_{x_{i}}$, generate an uniform number in
+    {[}0,1{]} and if it's smaller than $p_{x_{i}}$, select it to form
+    $\mathcal{C}^{'}$, and then after all draws are done, include
+    selected points from $\mathcal{C}^{'}$ into $\mathcal{C}$. Note that
+    the drawings are independent.
+  \end{itemize}
+\item
+  For $c \in \mathcal{C}$, set $w_{c}$ to be the number of points in $X$
+  closer to $c$ than any other points in $\mathcal{C}$.
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Create a vector $w$ of size equals to the number of elements in
+    $\mathcal{C}$, and initialize all its values with 0. Iterate in $X$
+    (elements not selected in as centroids), and for each $x_{i} \in X$,
+    find the index $j$ of the closest centroid (element from
+    $\mathcal{C}$) and increment $w[j]$ with 1. In the end the vector
+    $w$ can be computed properly.
+  \end{itemize}
+\item
+  Recluster the weighted points in $\mathcal{C}$ into $k$ clusters。
+
+  \begin{itemize}
+  \itemsep1pt\parskip0pt\parsep0pt
+  \item
+    Follow $k$-means++ algorithm to select only $k$ points as starting
+    centroids. Thus, k for loops will be executed and at each loop
+    select a single element drawn randomly with probability for each
+    element being $p_{i} = \frac{w_{i}}{\sum_{j = 1}^{m}w_{j}}$. At each
+    step select one element, and remove it from candidates, also
+    removing its corresponding weight.
+  \end{itemize}
+\end{itemize}
+
+    \subsubsection{Implementation and
+Testing}\label{implementation-and-testing}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k+kn}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{sys}
+         
+         \PY{c}{\PYZsh{} define a function to return initial centroids for basic k means algorithm}
+         \PY{k}{def} \PY{n+nf}{k\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{:}
+             \PY{c}{\PYZsh{} get the initial set of centroids}
+             \PY{c}{\PYZsh{} get k random numbers between 0 and the number of rows in the data set}
+             \PY{n}{centroid\PYZus{}id} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{replace} \PY{o}{=} \PY{n+nb+bp}{False}\PY{p}{)}
+             \PY{c}{\PYZsh{} get the corresponding data points}
+             \PY{k}{return} \PY{n}{data}\PY{p}{[}\PY{n}{centroid\PYZus{}id}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+         
+         \PY{c}{\PYZsh{} define a function to return initial centroids for k means ++ algorithm}
+         \PY{k}{def} \PY{n+nf}{kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{:}
+             \PY{c}{\PYZsh{} pick the initial centroid randomly}
+             \PY{n}{centroids} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{data\PYZus{}new} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{newaxis}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{c}{\PYZsh{} run k \PYZhy{} 1 passes through the data set to select the initial centroids}
+             \PY{k}{while} \PY{n}{centroids}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{k}\PY{p}{:}
+                 \PY{n}{euclidean\PYZus{}dist} \PY{o}{=} \PY{p}{(}\PY{n}{data\PYZus{}new} \PY{o}{\PYZhy{}} \PY{n}{centroids}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+                 \PY{n}{distance} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{euclidean\PYZus{}dist}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+                 \PY{n}{min\PYZus{}id} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{distance}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+                 \PY{n}{min\PYZus{}id}\PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n}{distance}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{distance}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                 \PY{c}{\PYZsh{} calculate phi}
+                 \PY{n}{phi} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{distance}\PY{p}{[}\PY{n}{min\PYZus{}id} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{]}\PY{p}{)}
+                 \PY{c}{\PYZsh{} calculate the probability distribution}
+                 \PY{n}{prob} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{n}{distance}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)} \PY{o}{/} \PY{n}{phi}
+                 \PY{c}{\PYZsh{} select the next centroid using the probability distribution calculated}
+                 \PY{n}{centroids} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{[}\PY{n}{centroids}\PY{p}{,} \PY{n}{data}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{p} \PY{o}{=} \PY{n}{prob}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+             \PY{k}{return} \PY{n}{centroids}
+         
+         \PY{c}{\PYZsh{} define a function to return initial centroids and data for scalable k means ++ algorithm}
+         \PY{k}{def} \PY{n+nf}{scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{:}
+             \PY{c}{\PYZsh{} Pick the initial centroid randomly}
+             \PY{n}{centroids} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{data}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{data\PYZus{}new} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{newaxis}\PY{p}{,} \PY{p}{:}\PY{p}{]}    
+             \PY{n}{euclidean\PYZus{}dist} \PY{o}{=} \PY{p}{(}\PY{n}{data\PYZus{}new} \PY{o}{\PYZhy{}} \PY{n}{centroids}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+             \PY{n}{distance} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{euclidean\PYZus{}dist}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+             \PY{n}{min\PYZus{}id} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{distance}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+             \PY{n}{min\PYZus{}id}\PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n}{distance}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{distance}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+             \PY{n}{phi\PYZus{}val} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{distance}\PY{p}{[}\PY{n}{min\PYZus{}id} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{]}\PY{p}{)}
+         
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{phi\PYZus{}val}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{euclidean\PYZus{}dist\PYZus{}1} \PY{o}{=} \PY{p}{(}\PY{n}{data\PYZus{}new} \PY{o}{\PYZhy{}} \PY{n}{centroids}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+                 \PY{n}{distance\PYZus{}1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{euclidean\PYZus{}dist\PYZus{}1}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+                 \PY{n}{min\PYZus{}id\PYZus{}1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{distance\PYZus{}1}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+                 \PY{n}{min\PYZus{}id\PYZus{}1}\PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n}{distance\PYZus{}1}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{distance\PYZus{}1}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                 \PY{n}{min\PYZus{}dist} \PY{o}{=} \PY{n}{distance\PYZus{}1}\PY{p}{[}\PY{n}{min\PYZus{}id\PYZus{}1} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{]}
+                 \PY{n}{phi\PYZus{}val} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{min\PYZus{}dist}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{j}\PY{p}{,} \PY{n}{p} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{data}\PY{p}{)}\PY{p}{:}
+                     \PY{n}{prob} \PY{o}{=} \PY{n}{l} \PY{o}{*} \PY{n}{min\PYZus{}dist}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{/} \PY{n}{phi\PYZus{}val}
+                     \PY{n}{u} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{uniform}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+                     \PY{k}{if} \PY{n}{prob} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{u}\PY{p}{:}
+                         \PY{n}{centroids} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{[}\PY{n}{centroids}\PY{p}{,} \PY{n}{p}\PY{p}{]}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{} Now we have the set of initial centroids that is greater than k}
+             \PY{c}{\PYZsh{} we should reduce this to k using scalable K\PYZhy{}Means++}
+             \PY{n}{euclidean\PYZus{}dist\PYZus{}2} \PY{o}{=} \PY{p}{(}\PY{n}{data\PYZus{}new} \PY{o}{\PYZhy{}} \PY{n}{centroids}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+             \PY{n}{distance\PYZus{}2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{euclidean\PYZus{}dist\PYZus{}2}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+             \PY{n}{min\PYZus{}id\PYZus{}2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{distance\PYZus{}2}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+             \PY{n}{min\PYZus{}id\PYZus{}2}\PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n}{distance\PYZus{}2}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{distance\PYZus{}2}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+             \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{count\PYZus{}nonzero}\PY{p}{(}\PY{n}{min\PYZus{}id\PYZus{}2}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{j}\PY{p}{]}\PY{p}{)} \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{centroids}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{,}\PY{n}{dtype}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{float64}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+             
+             \PY{c}{\PYZsh{}Recluster the weighted points into k clusters using kmeans++}
+             \PY{n}{new\PYZus{}centroids} \PY{o}{=} \PY{n}{centroids}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{centroids}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+             \PY{n}{old\PYZus{}centroids} \PY{o}{=} \PY{n}{centroids}
+             \PY{n}{index} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{old\PYZus{}centroids} \PY{o}{==} \PY{n}{new\PYZus{}centroids}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+             \PY{n}{old\PYZus{}centroids} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{old\PYZus{}centroids}\PY{p}{,} \PY{n}{index}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+             \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{weights}\PY{p}{,} \PY{n}{index}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{k}{while} \PY{n}{new\PYZus{}centroids}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{n}{k}\PY{p}{:}
+                 \PY{c}{\PYZsh{}Calculate the probability distribution based on weights}
+                 \PY{n}{prob} \PY{o}{=} \PY{n}{weights}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{weights}\PY{p}{)}
+                 \PY{c}{\PYZsh{}Select the next centroid using the prob calculated}
+                 \PY{n}{c} \PY{o}{=} \PY{n}{old\PYZus{}centroids}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n}{old\PYZus{}centroids}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{p} \PY{o}{=} \PY{n}{prob}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                 \PY{n}{index} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{where}\PY{p}{(}\PY{n}{old\PYZus{}centroids} \PY{o}{==} \PY{n}{c}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{new\PYZus{}centroids} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{[}\PY{n}{new\PYZus{}centroids}\PY{p}{,} \PY{n}{c}\PY{p}{]}\PY{p}{)}
+                 \PY{c}{\PYZsh{}Remove the selected center and its corresponding weight}
+                 \PY{n}{old\PYZus{}centroids} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{old\PYZus{}centroids}\PY{p}{,}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                 \PY{n}{weights} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{delete}\PY{p}{(}\PY{n}{weights}\PY{p}{,}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                 
+             \PY{k}{return} \PY{n}{new\PYZus{}centroids}\PY{p}{,} \PY{n}{centroids}
+         
+         
+         \PY{c}{\PYZsh{} define a function to compare the old centroids with new centroids to see if they converge}
+         \PY{k}{def} \PY{n+nf}{compare\PYZus{}centroids}\PY{p}{(}\PY{n}{old\PYZus{}centroids}\PY{p}{,} \PY{n}{new\PYZus{}centroids}\PY{p}{,} \PY{n}{precision} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{precision} \PY{o}{==} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array\PYZus{}equal}\PY{p}{(}\PY{n}{old\PYZus{}centroids}\PY{p}{,} \PY{n}{new\PYZus{}centroids}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{diff} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{new\PYZus{}centroids} \PY{o}{\PYZhy{}} \PY{n}{old\PYZus{}centroids}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{diff}\PY{p}{)} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{precision}\PY{p}{:}
+                     \PY{k}{return} \PY{n+nb+bp}{True}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{k}{return} \PY{n+nb+bp}{False}
+            
+                 
+         \PY{c}{\PYZsh{} define a function to implement the k means algorithm    }
+         \PY{k}{def} \PY{n+nf}{kmeans}\PY{p}{(}\PY{n}{centroids}\PY{p}{,} \PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{:}
+             \PY{c}{\PYZsh{} for basic k means algorithm, centroids = k\PYZus{}initial\PYZus{}centroids(data, k)}
+             \PY{c}{\PYZsh{} for k means pp algorithm, centroids = kpp\PYZus{}initial\PYZus{}centroids(data, k)}
+             \PY{c}{\PYZsh{} for scalable k means pp algorithm, centroids = scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids(data, k, l)[0]}
+             \PY{c}{\PYZsh{} data = scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids(data, k, l)[1]}
+             \PY{n}{stable} \PY{o}{=} \PY{n+nb+bp}{False}
+             \PY{n}{j} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{loopCount} \PY{o}{=} \PY{l+m+mi}{0}
+             \PY{k}{while} \PY{p}{(}\PY{o+ow}{not} \PY{n}{stable}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{loopCount} \PY{o}{\PYZlt{}} \PY{l+m+mi}{1000}\PY{p}{)}\PY{p}{:}
+                 \PY{c}{\PYZsh{} find the Euclidean distance between a center and a data point}
+                 \PY{n}{data\PYZus{}ex} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{newaxis}\PY{p}{,} \PY{p}{:}\PY{p}{]}
+                 \PY{n}{euclidean\PYZus{}dist} \PY{o}{=} \PY{p}{(}\PY{n}{data\PYZus{}ex} \PY{o}{\PYZhy{}} \PY{n}{centroids}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}
+                 \PY{n}{distance} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{euclidean\PYZus{}dist}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+                     
+                 \PY{c}{\PYZsh{} find to which cluster each data point belongs}
+                 \PY{c}{\PYZsh{} create a matrix min\PYZus{}id, and let min\PYZus{}id[i,j] = 1 if the ith data point belongs to cluster j}
+                 \PY{n}{min\PYZus{}id} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{distance}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+                 \PY{n}{min\PYZus{}id}\PY{p}{[}\PY{n+nb}{range}\PY{p}{(}\PY{n}{distance}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{argmin}\PY{p}{(}\PY{n}{distance}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                     
+                 \PY{c}{\PYZsh{} calculate J}
+                 \PY{n}{j\PYZus{}v} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{distance}\PY{p}{[}\PY{n}{min\PYZus{}id} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{j}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{j\PYZus{}v}\PY{p}{)}
+                     
+                 \PY{c}{\PYZsh{} calculates the new centroids}
+                 \PY{n}{new\PYZus{}centroids} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{empty}\PY{p}{(}\PY{n}{centroids}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+                 \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{:}
+                     \PY{k}{if} \PY{n}{data}\PY{p}{[}\PY{n}{min\PYZus{}id}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{c}\PY{p}{]} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                         \PY{n}{new\PYZus{}centroids}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{o}{=} \PY{n}{centroids}\PY{p}{[}\PY{n}{c}\PY{p}{]}
+                     \PY{k}{else}\PY{p}{:}
+                         \PY{n}{new\PYZus{}centroids}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{min\PYZus{}id}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{c}\PY{p}{]} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                     
+                 \PY{c}{\PYZsh{} compare centroids to see if converge}
+                 \PY{k}{if} \PY{n}{compare\PYZus{}centroids}\PY{p}{(}\PY{n}{centroids}\PY{p}{,} \PY{n}{new\PYZus{}centroids}\PY{p}{)}\PY{p}{:}
+                     \PY{c}{\PYZsh{} If this is TRUE, then it has resulted in the same centroids}
+                     \PY{n}{stable} \PY{o}{=} \PY{n+nb+bp}{True}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{centroids} \PY{o}{=} \PY{n}{new\PYZus{}centroids}
+         
+                 \PY{n}{loopCount} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+                         
+             \PY{k}{return} \PY{n}{loopCount}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n}{centroids}\PY{p}{,} \PY{n}{min\PYZus{}id}
+\end{Verbatim}
+
+    \subsubsection{Application and
+comparison}\label{application-and-comparison}
+
+\paragraph{Simulate data to show how it
+works}\label{simulate-data-to-show-how-it-works}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c}{\PYZsh{} Simulate data}
+         \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{l+m+mi}{100000}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{3}
+         \PY{n}{l} \PY{o}{=} \PY{l+m+mi}{4}
+         \PY{c}{\PYZsh{} Show the results}
+         \PY{c}{\PYZsh{} Basic k means}
+         \PY{k}{print} \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Basic K means algorithm:}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{kmeans\PYZus{}result} \PY{o}{=} \PY{n}{kmeans}\PY{p}{(}\PY{n}{k\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{,} \PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Using basic K means algorithm, after}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{kmeans\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{iterations, the algorithm stabilized.}\PY{l+s}{\PYZsq{}}
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Using basic K means algorithm, the centroids are}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{kmeans\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{k}{print} 
+         \PY{c}{\PYZsh{} K means pp}
+         \PY{k}{print} \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{K means ++ algorithm:}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{kpp\PYZus{}result} \PY{o}{=} \PY{n}{kmeans}\PY{p}{(}\PY{n}{kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{,} \PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Using K means ++ algorithm, after}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{kpp\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{iterations, the algorithm stabilized.}\PY{l+s}{\PYZsq{}}
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Using K means ++ algorithm, the centroids are}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{kpp\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{k}{print} 
+         \PY{c}{\PYZsh{} Scalable K means PP}
+         \PY{k}{print} \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Scalable K means ++ algorithm:}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{skpp\PYZus{}result} \PY{o}{=} \PY{n}{kmeans}\PY{p}{(}\PY{n}{scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{k}\PY{p}{)}
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Using Scalable K means ++ algorithm, after}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{skpp\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{iterations, the algorithm stabilized.}\PY{l+s}{\PYZsq{}}
+         \PY{k}{print} \PY{l+s}{\PYZsq{}}\PY{l+s}{Using Scalable K means ++ algorithm, the centroids are}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{skpp\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Basic K means algorithm:
+Using basic K means algorithm, after 85 iterations, the algorithm stabilized.
+Using basic K means algorithm, the centroids are [[ 0.90346352  0.50261785]
+ [-0.0164854  -1.03844687]
+ [-0.89444687  0.52168834]]
+
+K means ++ algorithm:
+Using K means ++ algorithm, after 99 iterations, the algorithm stabilized.
+Using K means ++ algorithm, the centroids are [[-0.69334221  0.77437958]
+ [-0.33724108 -0.98197227]
+ [ 1.01014755  0.20294394]]
+
+Scalable K means ++ algorithm:
+Using Scalable K means ++ algorithm, after 5 iterations, the algorithm stabilized.
+Using Scalable K means ++ algorithm, the centroids are [[-1.52639854 -0.18963809]
+ [ 0.41293428  1.5353942 ]
+ [ 1.01179008 -0.9225229 ]]
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib.pyplot} \PY{k+kn}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib.cm} \PY{k+kn}{as} \PY{n+nn}{cm}
+         \PY{o}{\PYZpc{}}\PY{k}{matplotlib} \PY{n}{inline}
+         
+         \PY{c}{\PYZsh{} plot}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         \PY{n}{kmeans\PYZus{}centroids} \PY{o}{=} \PY{n}{kmeans\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{n}{kmeans\PYZus{}location} \PY{o}{=} \PY{n}{kmeans\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+         \PY{n}{colors} \PY{o}{=} \PY{n+nb}{iter}\PY{p}{(}\PY{n}{cm}\PY{o}{.}\PY{n}{rainbow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{k} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{k}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{kmeans\PYZus{}location}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{p}{[}\PY{n}{kmeans\PYZus{}location}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n}{colors}\PY{p}{)}\PY{p}{)}
+             
+         \PY{n}{k\PYZus{}centroid} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{kmeans\PYZus{}centroids}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{kmeans\PYZus{}centroids}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{r}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{x}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{n}{k\PYZus{}centroid}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{KMeans\PYZus{}Centroids}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{scatterpoints} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{best}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{K\PYZhy{}Means Graph}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{FinalVersion_files/FinalVersion_5_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{kpp\PYZus{}centroids} \PY{o}{=} \PY{n}{kpp\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{n}{kpp\PYZus{}location} \PY{o}{=} \PY{n}{kpp\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+         \PY{n}{colors} \PY{o}{=} \PY{n+nb}{iter}\PY{p}{(}\PY{n}{cm}\PY{o}{.}\PY{n}{rainbow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{k} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{k}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{kpp\PYZus{}location}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{p}{[}\PY{n}{kpp\PYZus{}location}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n}{colors}\PY{p}{)}\PY{p}{)}
+             
+         \PY{n}{kpp\PYZus{}cent} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{kpp\PYZus{}centroids}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{kpp\PYZus{}centroids}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n}{colors}\PY{p}{)}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{x}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{n}{kpp\PYZus{}cent}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{KMeansPP\PYZus{}Centroids}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{scatterpoints} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{best}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{K\PYZhy{}Means ++ Graph}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{FinalVersion_files/FinalVersion_6_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{skpp\PYZus{}centroids} \PY{o}{=} \PY{n}{skpp\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+         \PY{n}{skpp\PYZus{}location} \PY{o}{=} \PY{n}{skpp\PYZus{}result}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+         \PY{n}{colors} \PY{o}{=} \PY{n+nb}{iter}\PY{p}{(}\PY{n}{cm}\PY{o}{.}\PY{n}{rainbow}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{k} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{k}\PY{p}{)}\PY{p}{:}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{skpp\PYZus{}location}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{data}\PY{p}{[}\PY{n}{skpp\PYZus{}location}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{i}\PY{p}{]} \PY{o}{==} \PY{n+nb+bp}{True}\PY{p}{,} \PY{p}{:}\PY{p}{]}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n}{colors}\PY{p}{)}\PY{p}{)}
+             
+         \PY{n}{skpp\PYZus{}cent} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{skpp\PYZus{}centroids}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{skpp\PYZus{}centroids}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{n+nb}{next}\PY{p}{(}\PY{n}{colors}\PY{p}{)}\PY{p}{,} \PY{n}{marker} \PY{o}{=} \PY{l+s}{\PYZsq{}}\PY{l+s}{x}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{[}\PY{n}{skpp\PYZus{}cent}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{ScalableKMeansPP\PYZus{}Centroids}\PY{l+s}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{scatterpoints} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{best}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Scalable K\PYZhy{}Means ++ Graph}\PY{l+s}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{FinalVersion_files/FinalVersion_7_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Comparison}\label{comparison}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k+kn}{import} \PY{n+nn}{timeit}
+         
+         \PY{k}{def} \PY{n+nf}{samplesize\PYZus{}initcost}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Compare the time to generate initial centers\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{10}
+             \PY{n}{l} \PY{o}{=} \PY{l+m+mi}{10}
+             \PY{n}{sampleSizes} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{3000}\PY{p}{,} \PY{l+m+mi}{4000}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{,} \PY{l+m+mi}{6000}\PY{p}{]}
+             \PY{n}{km\PYZus{}time\PYZus{}init} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{kmpp\PYZus{}time\PYZus{}init} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{skmpp\PYZus{}time\PYZus{}init} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{sampleSizes}\PY{p}{:}
+                 \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+                 
+                 \PY{n}{t1} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{k}{lambda}\PY{p}{:} \PY{n}{k\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{km\PYZus{}time\PYZus{}init}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t1}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}\PY{p}{)}
+                 
+                 \PY{n}{t2} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{k}{lambda}\PY{p}{:} \PY{n}{kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{kmpp\PYZus{}time\PYZus{}init}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t2}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}\PY{p}{)}
+         
+                 \PY{n}{t3} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{k}{lambda}\PY{p}{:} \PY{n}{scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{skmpp\PYZus{}time\PYZus{}init}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t3}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}\PY{p}{)}
+         
+             \PY{c}{\PYZsh{} plot}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleSizes}\PY{p}{,} \PY{n}{km\PYZus{}time\PYZus{}init}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleSizes}\PY{p}{,} \PY{n}{kmpp\PYZus{}time\PYZus{}init}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleSizes}\PY{p}{,} \PY{n}{skmpp\PYZus{}time\PYZus{}init}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{KMeans}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{KMeans++}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Scalable KMeans++}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{size}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{18}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Sample Size}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Initial Cost (ms)}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+             \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{get\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{set\PYZus{}powerlimits}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{samplesize\PYZus{}initcost}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{FinalVersion_files/FinalVersion_9_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k}{def} \PY{n+nf}{samplesize\PYZus{}Clustercost}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Compare the time to cluster data sets of different sizes\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{10}
+             \PY{n}{l} \PY{o}{=} \PY{l+m+mi}{10}
+             \PY{n}{sampleSizes} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{3000}\PY{p}{,} \PY{l+m+mi}{4000}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{,} \PY{l+m+mi}{6000}\PY{p}{]}
+             \PY{n}{km\PYZus{}perf} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{kmpp\PYZus{}perf} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{skmpp\PYZus{}perf} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{sampleSizes}\PY{p}{:}
+                 \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+         
+                 \PY{n}{t1} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{k}{lambda}\PY{p}{:} \PY{n}{kmeans}\PY{p}{(}\PY{n}{k\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{,} \PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{km\PYZus{}perf}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t1}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}\PY{p}{)}
+                 
+                 \PY{n}{t2} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{k}{lambda}\PY{p}{:} \PY{n}{kmeans}\PY{p}{(}\PY{n}{kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{,} \PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{kmpp\PYZus{}perf}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t2}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}\PY{p}{)}
+         
+                 \PY{n}{t3} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{Timer}\PY{p}{(}\PY{k}{lambda}\PY{p}{:} \PY{n}{kmeans}\PY{p}{(}\PY{n}{scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{)}
+                 \PY{n}{skmpp\PYZus{}perf}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{t3}\PY{o}{.}\PY{n}{timeit}\PY{p}{(}\PY{n}{number} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}\PY{p}{)}
+         
+             \PY{c}{\PYZsh{} plot}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleSizes}\PY{p}{,} \PY{n}{km\PYZus{}perf}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleSizes}\PY{p}{,} \PY{n}{kmpp\PYZus{}perf}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleSizes}\PY{p}{,} \PY{n}{skmpp\PYZus{}perf}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{KMeans}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{KMeans++}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Scalable KMeans++}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{size}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{18}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Sample Size}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Cluster Cost (ms)}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+             \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{get\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{set\PYZus{}powerlimits}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{samplesize\PYZus{}Clustercost}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{FinalVersion_files/FinalVersion_10_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{k}{def} \PY{n+nf}{samplesize\PYZus{}iteration}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Compare the number of iterations to cluster data sets of different sizes\PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{k} \PY{o}{=} \PY{l+m+mi}{10}
+             \PY{n}{l} \PY{o}{=} \PY{l+m+mi}{10}
+             \PY{n}{sampleSizes} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{2000}\PY{p}{,} \PY{l+m+mi}{3000}\PY{p}{,} \PY{l+m+mi}{4000}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{,} \PY{l+m+mi}{6000}\PY{p}{]}
+             \PY{n}{km\PYZus{}iteration} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{kmpp\PYZus{}iteration} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{n}{skmpp\PYZus{}iteration} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{n} \PY{o+ow}{in} \PY{n}{sampleSizes}\PY{p}{:}
+                 \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{randn}\PY{p}{(}\PY{n}{n}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+                 \PY{n}{i1} \PY{o}{=} \PY{n}{kmeans}\PY{p}{(}\PY{n}{k\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{,} \PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{i2} \PY{o}{=} \PY{n}{kmeans}\PY{p}{(}\PY{n}{kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{,} \PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{i3} \PY{o}{=} \PY{n}{kmeans}\PY{p}{(}\PY{n}{scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{scalable\PYZus{}kpp\PYZus{}initial\PYZus{}centroids}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{k}\PY{p}{,} \PY{n}{l}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{n}{km\PYZus{}iteration}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i1}\PY{p}{)}  
+                 \PY{n}{kmpp\PYZus{}iteration}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i2}\PY{p}{)}
+                 \PY{n}{skmpp\PYZus{}iteration}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{i3}\PY{p}{)}
+         
+             \PY{c}{\PYZsh{} plot}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleSizes}\PY{p}{,} \PY{n}{km\PYZus{}iteration}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleSizes}\PY{p}{,} \PY{n}{kmpp\PYZus{}iteration}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{sampleSizes}\PY{p}{,} \PY{n}{skmpp\PYZus{}iteration}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZhy{}o}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{KMeans}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{KMeans++}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{Scalable KMeans++}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{prop}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{size}\PY{l+s}{\PYZsq{}}\PY{p}{:} \PY{l+m+mi}{18}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Sample Size}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Iterations}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{18}\PY{p}{)}
+             \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{set\PYZus{}tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{xaxis}\PY{o}{.}\PY{n}{get\PYZus{}major\PYZus{}formatter}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{set\PYZus{}powerlimits}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+             \PY{n}{ax}\PY{o}{.}\PY{n}{yaxis}\PY{o}{.}\PY{n}{set\PYZus{}tick\PYZus{}params}\PY{p}{(}\PY{n}{labelsize}\PY{o}{=}\PY{l+m+mi}{16}\PY{p}{)}
+             \PY{c}{\PYZsh{}plt.savefig(\PYZsq{}samples\PYZhy{}initcost.png\PYZsq{})}
+             \PY{c}{\PYZsh{}plt.close()}
+             \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{samplesize\PYZus{}iteration}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{FinalVersion_files/FinalVersion_11_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    I compared the time to generate initial centers, time to cluster data
+sets of different sizes, and the number of iterations to cluster data
+sets of different sizes among basic K Means, K Means ++, and Scalable K
+Means ++ algorithms.
+
+The findings of the autors are proved now, that O(log n) iterations was
+not necessary and after rounds of small number (as little as five rounds
+according to the authors), the solution of k-means\textbar{}\textbar{}
+was consistently as good or better than that found by any other method,
+and the number of iterations until Lloyd's algorithm converges was
+smallest when using k-means\textbar{}\textbar{} as the seed. But the
+efficiency of k-means\textbar{}\textbar{} is not as good as those of the
+other 2 algorithms, while the authors claim that
+k-means\textbar{}\textbar{} was much faster than other algorithms for
+k-means. This may be due to the inefficiency of my code.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}}]:} 
+\end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
